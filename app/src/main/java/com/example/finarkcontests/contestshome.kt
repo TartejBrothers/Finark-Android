@@ -98,6 +98,14 @@ class contestshome : AppCompatActivity() {
                                 TableRow.LayoutParams.WRAP_CONTENT,
                                 TableRow.LayoutParams.WRAP_CONTENT
                             )
+                            val contestDateTextView = TextView(this@contestshome)
+                            val dateOnly = contest.createdDate.split("T")[0]
+
+                            contestDateTextView.text = dateOnly
+                            contestDateTextView.layoutParams = TableRow.LayoutParams(
+                                TableRow.LayoutParams.WRAP_CONTENT,
+                                TableRow.LayoutParams.WRAP_CONTENT
+                            )
 
                             val contestStatusTextView = TextView(this@contestshome)
                             contestStatusTextView.text = contest.contestStatus
@@ -105,9 +113,9 @@ class contestshome : AppCompatActivity() {
                                 TableRow.LayoutParams.WRAP_CONTENT,
                                 TableRow.LayoutParams.WRAP_CONTENT
                             )
-
-                            tableRow.addView(contestNameTextView)
                             tableRow.addView(contestIdTextView)
+                            tableRow.addView(contestNameTextView)
+                            tableRow.addView(contestDateTextView)
                             tableRow.addView(contestStatusTextView)
 
                             tableLayout.addView(tableRow)
