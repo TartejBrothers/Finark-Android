@@ -1,16 +1,10 @@
 # Finark-Android
 
----
-
 ## General Information
 
----
-
-- This Android app uses the API created using Express and displays the contests in a Tabular format and allows the user to create account and login.
+This Android app utilizes an Express API to display contests in a tabular format and enables users to create accounts and log in.
 
 ## Technologies Used
-
----
 
 - XML
 - Kotlin
@@ -19,19 +13,12 @@
 
 ## API
 
----
-
-- [API Link For Contests](https://finark-backend.vercel.app/api/contest)
-- `/api/contest`
+- [Contests API](https://finark-backend.vercel.app/api/contest)
+- Endpoint: `/api/contest`
 
 ## Working
 
----
-
-
 ## Screenshots
-
----
 
 ![Screenshot 1](readme/1.jpg)
 ![Screenshot 2](readme/2.jpg)
@@ -40,8 +27,4 @@
 
 ## Contact
 
----
-
-<a href="https://www.linkedin.com/in/tartej">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="width: 5%;">
-</a>
+Feel free to reach out to the developer on [LinkedIn](https://www.linkedin.com/in/tartej).
