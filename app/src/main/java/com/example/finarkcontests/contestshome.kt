@@ -13,6 +13,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+import android.app.DatePickerDialog
+import android.view.LayoutInflater
+
+import androidx.appcompat.app.AlertDialog
+
+import java.text.SimpleDateFormat
+import java.util.*
+
 data class Contest(
     val contestId: String,
     val contestName: String,
@@ -38,6 +46,7 @@ class contestshome : AppCompatActivity() {
 
         tableLayout = findViewById(R.id.tableLayout)
         searchEditText = findViewById(R.id.searchEditText)
+        val filterButton: Button = findViewById(R.id.button3)
 
         // Fetch contests data from API
         fetchContests()
@@ -52,6 +61,11 @@ class contestshome : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
+        // Set filter button click listener
+        filterButton.setOnClickListener {
+            showFilterPopup()
+        }
     }
 
     private fun fetchContests() {
@@ -167,9 +181,68 @@ class contestshome : AppCompatActivity() {
     }
 
     private fun filterContests(query: String) {
-        val filteredContests = contestsList.filter {
+        val filteredList = contestsList.filter {
             it.contestName.contains(query, ignoreCase = true)
         }
-        displayContests(filteredContests)
+        displayContests(filteredList)
+    }
+
+    private fun showFilterPopup() {
+        val inflater = LayoutInflater.from(this)
+        val view = inflater.inflate(R.layout.activity_filter_popup, null)
+        val statusRadioGroup: RadioGroup = view.findViewById(R.id.statusRadioGroup)
+        val startDateEditText: EditText = view.findViewById(R.id.startDateEditText)
+        val endDateEditText: EditText = view.findViewById(R.id.endDateEditText)
+        val applyFilterButton: Button = view.findViewById(R.id.applyFilterButton)
+
+        val startDateCalendar = Calendar.getInstance()
+        val endDateCalendar = Calendar.getInstance()
+
+        startDateEditText.setOnClickListener {
+            DatePickerDialog(this, { _, year, month, dayOfMonth ->
+                startDateCalendar.set(year, month, dayOfMonth)
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                startDateEditText.setText(dateFormat.format(startDateCalendar.time))
+            }, startDateCalendar.get(Calendar.YEAR), startDateCalendar.get(Calendar.MONTH),
+                startDateCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
+        endDateEditText.setOnClickListener {
+            DatePickerDialog(this, { _, year, month, dayOfMonth ->
+                endDateCalendar.set(year, month, dayOfMonth)
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                endDateEditText.setText(dateFormat.format(endDateCalendar.time))
+            }, endDateCalendar.get(Calendar.YEAR), endDateCalendar.get(Calendar.MONTH),
+                endDateCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(view)
+            .create()
+
+        applyFilterButton.setOnClickListener {
+            val selectedStatus = when (statusRadioGroup.checkedRadioButtonId) {
+                R.id.activeRadioButton -> "active"
+                R.id.endedRadioButton -> "ended"
+                else -> null
+            }
+
+            val startDate = startDateEditText.text.toString()
+            val endDate = endDateEditText.text.toString()
+
+            filterContestsByStatusAndDate(selectedStatus, startDate, endDate)
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun filterContestsByStatusAndDate(status: String?, startDate: String, endDate: String) {
+        val filteredList = contestsList.filter {
+            (status == null || it.contestStatus.equals(status, ignoreCase = true)) &&
+                    (startDate.isEmpty() || it.createdDate.split("T")[0] >= startDate) &&
+                    (endDate.isEmpty() || it.createdDate.split("T")[0] <= endDate)
+        }
+        displayContests(filteredList)
     }
 }
