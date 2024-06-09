@@ -18,6 +18,8 @@ This Android app utilizes an Express API to display contests in a tabular format
 
 ## Working
 
+[![Watch the video](https://raw.githubusercontent.com/TartejBrothers/Finark-Android/main/readme/4.jpg)](https://www.youtube.com/watch?v=0sCyVZ2Bfic)
+
 ## Screenshots
 
 ![Screenshot 1](readme/1.jpg)
