@@ -21,7 +21,7 @@
         android:id="@+id/imageView"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="236dp"
+        android:layout_marginStart="196dp"
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +34,7 @@
         android:layout_marginTop="28dp"
         android:text="Admin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.254"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
