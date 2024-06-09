@@ -19,7 +19,7 @@
         android:id="@+id/textView"
         android:layout_width="170dp"
         android:layout_height="32dp"
-        android:text="Welcome Back"
+        android:text="Hello There"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
@@ -44,13 +44,28 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutNumber"
+        android:id="@+id/textInputLayoutName"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Enter your Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutNumber"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -87,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
-        android:text="Log In!"
+        android:text="Sign Up!"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
