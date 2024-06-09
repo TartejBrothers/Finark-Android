@@ -1,10 +1,11 @@
 package com.example.finarkcontests
-
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.Gravity
 import android.widget.TableLayout
 import android.widget.TableRow
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,11 @@ class contestshome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contestshome)
+        val signButton: ImageView = findViewById(R.id.imageView4)
+        signButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         // Initialize TableLayout
         tableLayout = findViewById(R.id.tableLayout)
