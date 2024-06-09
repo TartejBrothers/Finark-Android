@@ -65,7 +65,7 @@ class contestshome : AppCompatActivity() {
                             )
                             contestIdTextView.gravity = Gravity.CENTER
                             contestIdTextView.setPadding(8, 8, 8, 8)
-                            contestIdTextView.setTextSize(14f) // Set text size
+                            contestIdTextView.setTextSize(11f) // Set text size
 
                             val contestNameTextView = TextView(this@contestshome)
                             contestNameTextView.text = contest.contestName
@@ -75,7 +75,7 @@ class contestshome : AppCompatActivity() {
                             )
                             contestNameTextView.gravity = Gravity.NO_GRAVITY
                             contestNameTextView.setPadding(8, 8, 8, 8)
-                            contestNameTextView.setTextSize(14f)
+                            contestNameTextView.setTextSize(11f)
 
                             val contestDateTextView = TextView(this@contestshome)
                             val dateOnly = contest.createdDate.split("T")[0]
@@ -86,7 +86,7 @@ class contestshome : AppCompatActivity() {
                             )
                             contestDateTextView.gravity = Gravity.CENTER
                             contestDateTextView.setPadding(8, 8, 8, 8)
-                            contestDateTextView.setTextSize(14f) // Set text size
+                            contestDateTextView.setTextSize(11f) // Set text size
 
                             val contestStatusTextView = TextView(this@contestshome)
                             contestStatusTextView.text = contest.contestStatus
@@ -94,9 +94,9 @@ class contestshome : AppCompatActivity() {
                                 quarterScreenWidth,
                                 TableRow.LayoutParams.WRAP_CONTENT
                             )
-                            contestStatusTextView.gravity = Gravity.NO_GRAVITY
+                            contestStatusTextView.gravity = Gravity.CENTER
                             contestStatusTextView.setPadding(8, 8, 8, 8)
-                            contestStatusTextView.setTextSize(14f)
+                            contestStatusTextView.setTextSize(11f)
 
                             tableRow.addView(contestIdTextView)
                             tableRow.addView(contestNameTextView)
