@@ -57,7 +57,11 @@ class signuppage : AppCompatActivity() {
         val nameEditText: EditText = findViewById(R.id.editTextName)
         val phoneNumberEditText: EditText = findViewById(R.id.editTextPhoneNumber)
         val passwordEditText: EditText = findViewById(R.id.editTextPassword)
-
+        val loginButton: Button = findViewById(R.id.button2)
+        loginButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         val signupButton: Button = findViewById(R.id.button)
         signupButton.setOnClickListener {
             val name = nameEditText.text.toString()
