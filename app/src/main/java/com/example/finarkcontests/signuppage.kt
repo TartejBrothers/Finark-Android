@@ -23,6 +23,8 @@ interface ApiService {
     fun createUser(@Body userData: UserData): Call<UserResponse>
     @GET("api/contest")
     fun getContests(): Call<List<Contest>>
+    @GET("api/user")
+    fun getUsers(): Call<List<User>>
 }
 
 data class UserData(

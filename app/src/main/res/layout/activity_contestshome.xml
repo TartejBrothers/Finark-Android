@@ -23,7 +23,7 @@
         android:id="@+id/imageView"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="196dp"
+        android:layout_marginStart="144dp"
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,10 +33,9 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="28dp"
         android:text="Admin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.254"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,59 +43,72 @@
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textView3"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView3">
 
         <!-- Table Header -->
         <TableRow
             android:layout_width="match_parent"
-            android:background="#F5FAFA"
+            android:layout_height="wrap_content"
 
-            android:layout_height="wrap_content">
+            android:background="#F5FAFA">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="11sp"
-                android:textAlignment="center"
+                android:padding="8dp"
                 android:text="Contest ID"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+                android:textAlignment="center"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="0dp"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="11sp"
+                android:padding="8dp"
                 android:text="Contest Name"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+                android:textAlignment="center"
+                android:textSize="11sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="11sp"
+                android:padding="8dp"
                 android:text="Contest Date"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+                android:textAlignment="center"
+                android:textSize="11sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
-                android:textSize="11sp"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
+
                 android:layout_weight="1"
+                android:padding="8dp"
                 android:text="Contest Status"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+                android:textSize="11sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
 
     </TableLayout>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
