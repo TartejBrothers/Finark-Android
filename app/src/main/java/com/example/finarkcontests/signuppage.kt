@@ -8,8 +8,13 @@ class signuppage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signuppage)
-        val signUpButton: Button = findViewById(R.id.button)
-        signUpButton.setOnClickListener {
+        val loginButton: Button = findViewById(R.id.button)
+        loginButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        val loginButton2: Button = findViewById(R.id.button2)
+        loginButton2.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
