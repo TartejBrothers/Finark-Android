@@ -13,10 +13,13 @@ class MainActivity : AppCompatActivity() {
 
         val signUpButton: Button = findViewById(R.id.button2)
         signUpButton.setOnClickListener {
-//            println("Button Tapped")
-
-            Log.i("Mainactiviy","Button tapped")
             val intent = Intent(this, signuppage::class.java)
+            startActivity(intent)
+        }
+
+        val loginButton: Button = findViewById(R.id.button)
+        loginButton.setOnClickListener {
+            val intent = Intent(this, contestshome::class.java)
             startActivity(intent)
         }
     }
