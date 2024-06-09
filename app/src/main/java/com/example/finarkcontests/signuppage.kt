@@ -12,17 +12,17 @@ import retrofit2.Response
 import android.content.Intent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.GET
 
-
 interface ApiService {
     @POST("api/user")
     fun createUser(@Body userData: UserData): Call<UserResponse>
+
     @GET("api/contest")
     fun getContests(): Call<List<Contest>>
+
     @GET("api/user")
     fun getUsers(): Call<List<User>>
 }
@@ -58,44 +58,55 @@ class signuppage : AppCompatActivity() {
         val phoneNumberEditText: EditText = findViewById(R.id.editTextPhoneNumber)
         val passwordEditText: EditText = findViewById(R.id.editTextPassword)
         val loginButton: Button = findViewById(R.id.button2)
+
         loginButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
         val signupButton: Button = findViewById(R.id.button)
         signupButton.setOnClickListener {
             val name = nameEditText.text.toString()
             val phoneNumber = phoneNumberEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            val userData = UserData(name, phoneNumber, password)
-            Log.i("signuppage", userData.toString())
+            if (validatePassword(password)) {
+                val userData = UserData(name, phoneNumber, password)
+                Log.i("signuppage", userData.toString())
 
-            RetrofitClient.apiService.createUser(userData).enqueue(object : Callback<UserResponse> {
-                override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                    if (response.isSuccessful) {
-                        val userResponse = response.body()
-                        print(userResponse)
-                        if (userResponse != null && userResponse.success) {
-                            Toast.makeText(applicationContext, "User created successfully", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@signuppage, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                RetrofitClient.apiService.createUser(userData).enqueue(object : Callback<UserResponse> {
+                    override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                        if (response.isSuccessful) {
+                            val userResponse = response.body()
+                            print(userResponse)
+                            if (userResponse != null && userResponse.success) {
+                                Toast.makeText(applicationContext, "User created successfully", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this@signuppage, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(applicationContext, " ${userResponse?.message}", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this@signuppage, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
                         } else {
-                            Toast.makeText(applicationContext, " ${userResponse?.message}", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@signuppage, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                            Toast.makeText(applicationContext, "Failed to create user", Toast.LENGTH_SHORT).show()
                         }
-                    } else {
-                        Toast.makeText(applicationContext, "Failed to create user", Toast.LENGTH_SHORT).show()
                     }
-                }
 
-                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    Toast.makeText(applicationContext, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
+                    override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            } else {
+                Toast.makeText(applicationContext, "Password must contain at least one uppercase letter, one lowercase letter, and one number", Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+
+    private fun validatePassword(password: String): Boolean {
+        val passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$"
+        return password.matches(Regex(passwordPattern))
     }
 }
