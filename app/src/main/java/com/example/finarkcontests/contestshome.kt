@@ -6,14 +6,10 @@ import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.TableLayout
 import android.widget.TableRow
+import android.widget.TextView
+import android.view.Gravity
 
 data class Contest(
     val contestId: String,
@@ -22,38 +18,7 @@ data class Contest(
     val contestStatus: String
 )
 
-class ContestAdapter : RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
-
-    private var contests: List<Contest> = emptyList()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContestViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_contestshome, parent, false)
-        return ContestViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ContestViewHolder, position: Int) {
-        val contest = contests[position]
-        holder.bind(contest)
-    }
-
-    override fun getItemCount(): Int {
-        return contests.size
-    }
-
-    fun submitList(contests: List<Contest>) {
-        this.contests = contests
-        notifyDataSetChanged()
-    }
-
-    inner class ContestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(contest: Contest) {
-            // No need to bind views here as we're not using RecyclerView
-        }
-    }
-}
-
 class contestshome : AppCompatActivity() {
-    private lateinit var contestAdapter: ContestAdapter
     private lateinit var tableLayout: TableLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,21 +56,25 @@ class contestshome : AppCompatActivity() {
                                 TableRow.LayoutParams.WRAP_CONTENT,
                                 TableRow.LayoutParams.WRAP_CONTENT
                             )
+                            contestNameTextView.gravity = Gravity.CENTER
 
                             val contestIdTextView = TextView(this@contestshome)
                             contestIdTextView.text = contest.contestId
                             contestIdTextView.layoutParams = TableRow.LayoutParams(
                                 TableRow.LayoutParams.WRAP_CONTENT,
+
                                 TableRow.LayoutParams.WRAP_CONTENT
                             )
+                            contestIdTextView.gravity = Gravity.CENTER
+
                             val contestDateTextView = TextView(this@contestshome)
                             val dateOnly = contest.createdDate.split("T")[0]
-
                             contestDateTextView.text = dateOnly
                             contestDateTextView.layoutParams = TableRow.LayoutParams(
                                 TableRow.LayoutParams.WRAP_CONTENT,
                                 TableRow.LayoutParams.WRAP_CONTENT
                             )
+                            contestDateTextView.gravity = Gravity.CENTER
 
                             val contestStatusTextView = TextView(this@contestshome)
                             contestStatusTextView.text = contest.contestStatus
@@ -113,6 +82,8 @@ class contestshome : AppCompatActivity() {
                                 TableRow.LayoutParams.WRAP_CONTENT,
                                 TableRow.LayoutParams.WRAP_CONTENT
                             )
+                            contestStatusTextView.gravity = Gravity.CENTER
+
                             tableRow.addView(contestIdTextView)
                             tableRow.addView(contestNameTextView)
                             tableRow.addView(contestDateTextView)
