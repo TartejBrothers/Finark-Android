@@ -15,10 +15,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.GET
+
 
 interface ApiService {
     @POST("api/user")
     fun createUser(@Body userData: UserData): Call<UserResponse>
+    @GET("api/contest")
+    fun getContests(): Call<List<Contest>>
 }
 
 data class UserData(
